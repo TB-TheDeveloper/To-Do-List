@@ -1,32 +1,25 @@
 import React, { useState } from 'react';
-import {
-  Button,
-  Input,
-  Table,
-  TableHeader,
-  TableHeaderCell,
-} from 'semantic-ui-react';
-import type { Task } from './types';
+import { Button, Table, TableHeader, TableHeaderCell } from 'semantic-ui-react';
+import type { ModalEdit, Task } from './types';
+import EditModal from './EditModal';
+import TaskInputField from './TaskInputField';
 
 const data: Task[] = [
   { id: 1, task: 'Example Task', created: '2024-01-01', completed: false },
   { id: 2, task: 'Another Task', created: '2024-01-02', completed: true },
 ];
+
+export const defaultEditModal: ModalEdit = { open: false, id: undefined };
+
 const App: React.FC = () => {
-  const [newTask, setNewTask] = useState<string>('');
   const [tasks, setTasks] = useState<Task[]>(data);
+  const [editModal, setEditModal] = useState<ModalEdit>(defaultEditModal);
 
   return (
     <>
       <h1>To-Do List</h1>
-      <div style={{ marginTop: '20px' }}>
-        <Input
-          placeholder="Add Task..."
-          style={{ marginRight: 0, marginBottom: '15px', width: '80%' }}
-        />
-        <Button content="Add" color="green" style={{ marginLeft: 0 }} />
-      </div>
-      <Table celled className="table1">
+      <TaskInputField placeholder="Add Task..." setTasks={setTasks} />
+      <Table celled className="table">
         <TableHeader>
           <Table.Row>
             <TableHeaderCell>Task</TableHeaderCell>
@@ -46,7 +39,11 @@ const App: React.FC = () => {
                   {created}
                 </Table.Cell>
                 <Table.Cell>
-                  <Button content="Edit" color="blue" />
+                  <Button
+                    content="Edit"
+                    color="blue"
+                    onClick={() => setEditModal({ open: true, id: id })}
+                  />
                   <Button
                     content={completed ? 'Incompleted' : 'Complete'}
                     color="brown"
@@ -73,6 +70,12 @@ const App: React.FC = () => {
           })}
         </Table.Body>
       </Table>
+      <EditModal
+        editModal={editModal}
+        setEditModal={setEditModal}
+        setTasks={setTasks}
+        tasks={tasks}
+      />
     </>
   );
 };

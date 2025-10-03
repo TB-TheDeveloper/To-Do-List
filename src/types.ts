@@ -1,3 +1,8 @@
+export interface ModalEdit {
+    id: number | undefined;
+    open: boolean;
+}
+
 export interface Task {
   id: number;
   task: string;

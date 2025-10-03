@@ -1,8 +1,20 @@
+.add-task-button {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  min-height: 1.5em !important;
+}
+
+.add-task-input > input {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
 body {
   margin: 0;
   text-align: center;
   justify-content: center;
   display: flex;
+  background-color: rgb(66, 78, 78) !important;
 }
 
 .completed-task {
@@ -10,6 +22,6 @@ body {
   color: gray !important;
 }
 
-.table1 {
+.table {
   width: 50vw !important;
 }
