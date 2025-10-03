@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+}
+
+.completed-task {
+  text-decoration: line-through !important;
+  color: gray !important;
+}
+
+.table1 {
+  width: 50vw !important;
+}
